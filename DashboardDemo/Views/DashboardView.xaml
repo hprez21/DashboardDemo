@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DashboardDemo.Views.DashboardView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:attached="clr-namespace:DashboardDemo.AttachedProperties"
+    xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    Title="DashboardView"
+    Background="#F5F5F5">
+
+    <Grid x:Name="MainLayout" RowDefinitions="Auto,Auto,Auto,Auto,*">
+        <Label
+            Margin="10"
+            attached:RoleManager.Visibility="Admin"
+            FontAttributes="Bold"
+            FontSize="16"
+            Text="Sales Statistics" />
+        <Border
+            Grid.Row="1"
+            Margin="10"
+            Padding="10"
+            attached:RoleManager.Visibility="Admin"
+            Background="White"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 8,8,8,8">
+            <microcharts:ChartView x:Name="chartView" HeightRequest="250" />
+        </Border>
+        <Grid
+            Grid.Row="2"
+            attached:RoleManager.Visibility="Admin"
+            ColumnDefinitions="*,*"
+            HeightRequest="125">
+            <Border
+                Margin="10"
+                Padding="10"
+                Background="White"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 8,8,8,8">
+                <VerticalStackLayout Spacing="5" VerticalOptions="Center">
+                    <Label FontSize="12" Text="Total Income" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="$85,288.12" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontSize="12"
+                                    Text="+ 12.5%"
+                                    TextColor="Green" />
+                                <Span
+                                    FontSize="12"
+                                    Text="    Than last week"
+                                    TextColor="#858D8D" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Border>
+            <Border
+                Grid.Column="1"
+                Margin="10"
+                Padding="10"
+                Background="White"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 8,8,8,8">
+                <VerticalStackLayout Spacing="5" VerticalOptions="Center">
+                    <Label FontSize="12" Text="Recent Expense" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Text="$31,865.59" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontSize="12"
+                                    Text="- 21.6%"
+                                    TextColor="Red" />
+                                <Span
+                                    FontSize="12"
+                                    Text="    Than last week"
+                                    TextColor="#858D8D" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <Label
+            Grid.Row="3"
+            Margin="10"
+            FontAttributes="Bold"
+            FontSize="16"
+            Text="Recent Orders" />
+        <CollectionView Grid.Row="4" Margin="10,0,10,0">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Office Chair</x:String>
+                    <x:String>AA batteries</x:String>
+                    <x:String>Gamer Desktop</x:String>
+                    <x:String>24" monitor</x:String>
+                    <x:String>PH Printer</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        ColumnDefinitions="Auto,.6*,.2*"
+                        HeightRequest="100"
+                        RowDefinitions="*,*">
+                        <RoundRectangle
+                            Grid.RowSpan="2"
+                            Grid.ColumnSpan="3"
+                            CornerRadius="15"
+                            Fill="White" />
+                        <Border
+                            Grid.RowSpan="2"
+                            Margin="10"
+                            Background="#ECF2FB"
+                            HeightRequest="75"
+                            HorizontalOptions="Center"
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 14,14,14,14"
+                            WidthRequest="70">
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="70"
+                                Source="dotnet_bot.png"
+                                WidthRequest="70" />
+                        </Border>
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding .}"
+                            TextColor="#1E3354"
+                            VerticalOptions="End" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            FontSize="12"
+                            Text="Jun 19, 2050"
+                            TextColor="#7F8E9D" />
+                        <Label
+                            Grid.RowSpan="2"
+                            Grid.Column="2"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="$99.99"
+                            TextColor="#1E3354"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="14" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
