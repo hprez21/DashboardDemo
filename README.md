@@ -1,14 +1,14 @@
 # DashboardDemo
 
-A .NET MAUI application designed to demonstrate and practice **Markup Extensions** implementation, specifically focusing on role-based UI visibility control through attached properties. This project showcases how to create custom attached properties that can be used directly in XAML to control UI element visibility based on user roles.
+A .NET MAUI application designed to demonstrate and practice **Bindable Properties** and **Attached Properties** implementation, specifically focusing on role-based UI visibility control. This project showcases how to create custom attached properties using bindable properties that can be used directly in XAML to control UI element visibility based on user roles.
 
 ## Project Overview
 
-This dashboard application implements a role-based visibility system using custom attached properties as markup extensions. The main feature is the `RoleManager` attached property that allows developers to declaratively specify which UI elements should be visible for different user roles (User vs Admin) directly in XAML markup.
+This dashboard application implements a role-based visibility system using custom attached properties built on bindable properties. The main feature is the `RoleManager` attached property that allows developers to declaratively specify which UI elements should be visible for different user roles (User vs Admin) directly in XAML markup.
 
 ### Key Features
 
-- **Custom Attached Properties**: Implementation of `RoleManager.Visibility` attached property for role-based UI control
+- **Custom Attached Properties**: Implementation of `RoleManager.Visibility` attached property using bindable properties for role-based UI control
 - **Role-Based Dashboard**: Different UI elements visible depending on user role (User/Admin)
 - **Chart Integration**: Sales statistics visualization using Microcharts library (visible for Admin role)
 - **MVVM Pattern**: Clean separation of concerns using ViewModels and ObservableObject
@@ -16,11 +16,12 @@ This dashboard application implements a role-based visibility system using custo
 
 ### Learning Objectives
 
-- Understanding how to create and implement custom attached properties in .NET MAUI
-- Learning how attached properties work as markup extensions in XAML
+- Understanding how to create and implement custom attached properties in .NET MAUI using bindable properties
+- Learning how attached properties work and their relationship with bindable properties in XAML
 - Practicing role-based UI design patterns
 - Working with bindable properties and their lifecycle
-- Implementing conditional UI visibility based on application state
+- Understanding the BindableProperty.CreateAttached method and its parameters
+- Implementing conditional UI visibility based on application state using custom properties
 
 ## Project Structure
 
@@ -29,7 +30,7 @@ The project is organized following standard .NET MAUI conventions with additiona
 ### Core Components
 
 - **`AttachedProperties/`**
-  - `RoleManager.cs` - Custom attached property implementation for role-based visibility control
+  - `RoleManager.cs` - Custom attached property implementation using bindable properties for role-based visibility control
 
 - **`Enums/`**
   - `UserRole.cs` - Enumeration defining available user roles (User, Admin)
@@ -58,7 +59,7 @@ The project is organized following standard .NET MAUI conventions with additiona
 
 ### Key Implementation Details
 
-The `RoleManager` attached property is implemented as a bindable property that can be attached to any UI element:
+The `RoleManager` attached property is implemented using the `BindableProperty.CreateAttached` method, creating a bindable property that can be attached to any UI element:
 
 ```csharp
 public static BindableProperty VisibilityProperty =
@@ -66,9 +67,13 @@ public static BindableProperty VisibilityProperty =
         typeof(UserRole), typeof(RoleManager), UserRole.User);
 ```
 
-This allows XAML usage like:
+This demonstrates the core concepts of:
+- **Bindable Properties**: The foundation that enables data binding and property change notifications
+- **Attached Properties**: Properties that can be "attached" to any UI element, even if the element doesn't originally define that property
+
+The XAML usage shows how attached properties work:
 ```xaml
 <Label attached:RoleManager.Visibility="Admin" Text="Admin Only Content" />
 ```
 
-The project demonstrates how custom attached properties can serve as powerful markup extensions, enabling declarative UI control directly in XAML while maintaining clean separation between UI logic and business logic.
+The project demonstrates how bindable properties serve as the foundation for attached properties, enabling powerful declarative UI control directly in XAML while maintaining clean separation between UI logic and business logic.
