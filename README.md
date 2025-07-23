@@ -2,6 +2,8 @@
 
 A .NET MAUI application designed to demonstrate and practice **Bindable Properties** and **Attached Properties** implementation, specifically focusing on role-based UI visibility control. This project showcases how to create custom attached properties using bindable properties that can be used directly in XAML to control UI element visibility based on user roles.
 
+<img width="848" height="478" alt="l-9 (1)" src="https://github.com/user-attachments/assets/32be7fd5-f371-4760-9d16-948f72822d3b" />
+
 ## Project Overview
 
 This dashboard application implements a role-based visibility system using custom attached properties built on bindable properties. The main feature is the `RoleManager` attached property that allows developers to declaratively specify which UI elements should be visible for different user roles (User vs Admin) directly in XAML markup.
